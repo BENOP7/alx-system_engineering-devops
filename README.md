@@ -1,2 +1,2 @@
-# alx-system_engineering_devops
-Basic shell tasks at ALX SE Holberton program
+Here is where I'll place all my basic shell tasks.
+
