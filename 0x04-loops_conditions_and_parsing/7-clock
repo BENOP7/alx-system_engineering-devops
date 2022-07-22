@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Displays the time per minute for 12 hours and 59 minutes
+
+time=0
+
+while [[ $((time/60)) -ne 13 ]]
+do
+	if [ $((time%60)) -eq 0 ]
+	then
+		echo "Hour: $((time/60))"
+	else
+		echo $((time%60))
+	fi
+	((time++))
+	
+done
