@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 20
+# Prints 'bad luck from China; after printing 4
+# Prints 'bad luck from Japan' after printing 9
+# prints 'bad luck from Italy after printing 17
+
+n=1
+
+while [ $n -le 20 ]
+do
+	echo "$n"
+	
+	case "$n" in
+	"4")
+		echo bad luck from China
+	;;
+	"9")
+                echo bad luck from Japan
+        ;;
+        "17")
+                echo bad luck from Italy
+        ;;
+	esac
+
+	((n++))
+done
