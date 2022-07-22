@@ -3,6 +3,13 @@
 
 for file in *
 do
+
+	chk=$(grep -c "-" <<< $file)
+	if [ $chk -eq 0 ]
+	then
+		echo $file
+		continue
+	fi
 	readarray -d "-" -t arr <<< "$file"
 	echo -n "${arr[1]}"
 done
