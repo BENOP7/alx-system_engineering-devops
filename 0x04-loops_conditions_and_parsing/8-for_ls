@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# display formatted names of files in current directory
+
+for file in *
+do
+	readarray -d "-" -t arr <<< "$file"
+	echo -n "${arr[1]}"
+done
