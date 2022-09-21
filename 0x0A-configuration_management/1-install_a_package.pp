@@ -6,5 +6,6 @@ ensure => 'installed'
 
 package {'flask':
 ensure  => 'installed'
+version => '2.1.0'
 require => Package['pip3']
 }
