@@ -1,5 +1,6 @@
 # Manifest terminates a process called killmenow
 
-exec {'pkill -9 ./killmenow':
-path => '/bin/'
+exec {'terminate killmenow':
+path    => '/bin/',
+command => 'pkill -f ./killmenow'
 }
