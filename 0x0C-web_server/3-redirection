@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Hello world Nginx
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+sudo sed -i "28i \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+sudo service nginx restart
