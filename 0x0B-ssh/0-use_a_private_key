@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script to connect to my server using the private key file
+
+ssh -i ~/.ssh/school 34.227.91.25
