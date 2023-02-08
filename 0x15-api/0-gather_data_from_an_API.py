@@ -27,7 +27,7 @@ if __name__ == '__main__':
             if task.get("completed"):
                 titles.append(task.get("title"))
 
-    print("Employee " + user.get('name') + "is done with tasks(" +
+    print("Employee " + user.get('name') + " is done with tasks(" +
           str(len(titles)) + "/" + str(count) + "):")
     for title in titles:
         print("\t", title)
