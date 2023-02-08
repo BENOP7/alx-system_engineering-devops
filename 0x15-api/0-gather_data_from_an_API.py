@@ -12,7 +12,6 @@ if __name__ == '__main__':
 
     idx = int(sys.argv[1])
 
-
     resp = rq.urlopen("https://jsonplaceholder.typicode.com/todos/")
     resp = resp.read()
     dic = json.loads(resp)
