@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 '''
     Take employeeId and get todo list using an API
+    Makes API calls to https://jsonplaceholder.typicode.com/
 '''
+
 
 import urllib.request as rq
 import json
