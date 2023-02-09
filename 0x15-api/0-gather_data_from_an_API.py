@@ -1,33 +1,22 @@
 #!/usr/bin/python3
-'''
-    Take employeeId and get todo list using an API
-    Makes API calls to https://jsonplaceholder.typicode.com/
-'''
+"""
+Uses https://jsonplaceholder.typicode.com along with an employee ID to
+return information about the employee's todo list progress
+"""
 
+import requests
+from sys import argv
 
 if __name__ == '__main__':
-    import json
-    import sys
-    import urllib.request as rq
-
-    idx = int(sys.argv[1])
-
-    resp = rq.urlopen("https://jsonplaceholder.typicode.com/todos/")
-    resp = resp.read()
-    dic = json.loads(resp)
-    resp = rq.urlopen("https://jsonplaceholder.typicode.com/users/" + str(idx))
-    resp = resp.read()
-    user = json.loads(resp)
-    titles = []
-    count = 0
-
-    for task in dic:
-        if task.get("userId") == idx:
-            count += 1
-            if task.get("completed"):
-                titles.append(task.get("title"))
-
-    print("Employee " + user.get('name') + " is done with tasks(" +
-          str(len(titles)) + "/" + str(count) + "):")
-    for title in titles:
-        print("\t", title)
+    userId = argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                        format(userId), verify=False).json()
+    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
+                        format(userId), verify=False).json()
+    completed_tasks = []
+    for task in todo:
+        if task.get('completed') is True:
+            completed_tasks.append(task.get('title'))
+    print("Employee {} is done with tasks({}/{}):".
+          format(user.get('name'), len(completed_tasks), len(todo)))
+    print("\n".join("\t {}".format(task) for task in completed_tasks))
