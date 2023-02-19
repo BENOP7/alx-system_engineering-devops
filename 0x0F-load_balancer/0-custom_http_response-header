@@ -3,14 +3,29 @@
 sudo apt-get update -y
 sudo apt-get install nginx -y
 sudo ufw allow 'Nginx HTTP'
-if [ -f /var/www/html/index.nginx-debian.html ]; then
-	sudo echo "Holberton School for the win!" | sudo tee /var/www/html/index.nginx-debian.html
-fi
-if [ -f /usr/share/nginx/html/index.html ]; then
-	sudo echo "Holberton School for the win!" | sudo tee /usr/share/nginx/html/index.html
-fi
-sed -i '/listen 80 default_server/a add_header X-Served-By $hostname;' /etc/nginx/sites-enabled/default
-sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=w6E7aQnA4Ws permanent;' /etc/nginx/sites-enabled/default
-sudo echo "Ceci n'est pas une page" >> /usr/share/nginx/html/page404.html
-sed -i '/listen 80 default_server/a error_page 404 page404.html; location = /page404.html {root  /usr/share/nginx/html; internal;}' /etc/nginx/sites-enabled/default
-sudo /etc/init.d/nginx start
+sudo mkdir -p /var/www/html /var/www/error
+sudo chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+server_config=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	add_header X-Served-By \$hostname;
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://youtube.com permanent;
+	}
+	error_page 404 /404.html;
+	location = /404.html {
+		internal;
+	}
+}"
+
+echo "$server_config" > /etc/nginx/sites-enabled/default
+sudo service nginx restart
