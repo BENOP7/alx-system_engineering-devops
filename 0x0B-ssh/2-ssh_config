@@ -1,0 +1,2 @@
+Host 100.25.12.91
+	IdentityFile ~/.ssh/school
