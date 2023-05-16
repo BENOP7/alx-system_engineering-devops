@@ -12,8 +12,8 @@ frontend httpin
 	default_backend web-servers
 backend web-servers
 	balance roundrobin
-	server 16388-web-01 100.25.12.91:80 check
-	server 16388-web-02 52.207.88.254:80 check"
+	server 16388-web-01 54.160.91.77:80 check
+        server 16388-web-02 52.91.203.69:80 check"
 
 echo -e "$str_haproxy" >> /etc/haproxy/haproxy.cfg
 
