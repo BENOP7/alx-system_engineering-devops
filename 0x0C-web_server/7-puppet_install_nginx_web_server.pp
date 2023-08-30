@@ -9,8 +9,6 @@ mode => '0777'
 file {'/var/www/html/index.html':
 ensure  => 'present',
 content => 'Hello World!',
-owner   => ubuntu,
-group   => ubuntu,
 }
 
 exec {'append directive':
