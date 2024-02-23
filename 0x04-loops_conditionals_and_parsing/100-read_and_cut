@@ -4,8 +4,10 @@
 passwd_file="/etc/passwd"
 
 # Check if the file exists
-if [ -f "$passwd_file" ]; then
-    while IFS=":" read -r username _ uid _ _ home_directory _; do
+if [ -f "$passwd_file" ]
+then
+    while IFS=":" read -r username _ uid _ _ home_directory _;
+    do
         echo "$username:$uid:$home_directory"
     done < "$passwd_file"
 fi
