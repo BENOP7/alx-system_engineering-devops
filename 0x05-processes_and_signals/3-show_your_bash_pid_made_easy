@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Shows all pid and name of processes which contain a particular string in 
+# their name
+
+pgrep -l bash
