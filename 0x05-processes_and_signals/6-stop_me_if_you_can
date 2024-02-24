@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Get the pid of the script
+
+pkill -TERM -f ./4-to_infinity_and_beyond
