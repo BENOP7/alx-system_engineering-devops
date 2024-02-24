@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # This script displays 'To infinity and beyond' indefinately. with a sleep 2 between each iteration.
 
-trap "echo I hate the kill command" SIGTERM
+trap "echo I hate the kill command; exit" SIGTERM
 trap "echo Y U no love me?!" SIGINT
 trap "rm -f /var/run/myscript.pid ; exit" SIGQUIT
 
 i=true
 
-sudo echo $$ > /var/run/myscript.pid
+echo $$ > /var/run/myscript.pid
 
 while [ $i ]
 do
