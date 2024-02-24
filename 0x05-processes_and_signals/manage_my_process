@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # writes I am alive to a tmp file in /tmp
 
+trap "exit" SIGTERM
+
 while true
 do
 	echo -e "I am alive!" >> /tmp/my_process
